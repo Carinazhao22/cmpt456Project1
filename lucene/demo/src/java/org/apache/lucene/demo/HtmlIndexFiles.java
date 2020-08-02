@@ -196,18 +196,19 @@ public class HtmlIndexFiles {
             //added code: get titles and content
             doc.add(new TextField("title", res.getTitle(),Field.Store.YES));
             doc.add(new TextField("contents", res.getBody(),Field.Store.YES));
-            // print one result to file (for one file)
+            // print result to file (for one file)
             String body[];
             String title[];
             FileWriter fw=new FileWriter("result.txt");
-            body=doc.getValues("body");
+            body=doc.getValues("contents");
             title=doc.getValues("title");
-            for(int i=0;i<body.length;i++){
-                fw.write(body[i]+"\n");
-            }
             for(int i=0;i<title.length;i++){
                 fw.write(title[i]+"\n");
             }
+            for(int i=0;i<body.length;i++){
+                fw.write(body[i]+"\n");
+            }
+
             fw.close();
 
             if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
